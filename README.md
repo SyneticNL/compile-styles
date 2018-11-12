@@ -1,7 +1,7 @@
 An extensive task to compile SCSS files
 
 Settings object:
-{
+````{
   source: [],
   dest: dest,
   ignore: [`${pattern}*`],
