@@ -59,7 +59,7 @@ const
     sizereport = require('gulp-sizereport'), // Create an sizereport for your project
     sourcemaps = require('gulp-sourcemaps'); // Creates sourcemaps in css files
 
-stringToArray = require('./stringToArray');
+stringToArray = require('./scripts/stringToArray');
 
 module.exports = (config) => {
     config.dest = stringToArray(config.dest);
