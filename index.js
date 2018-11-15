@@ -50,6 +50,7 @@ const
     gzip = require('gulp-gzip'), // gZip CSS & JavaScript
     multiDest = require('gulp-multi-dest'),
     nano = require('gulp-cssnano'), // Minifies css
+    notifier = require('node-notifier'), // Adds notifications to tasks
     plumber = require('gulp-plumber'), // Error Handling
     postcss = require('gulp-postcss'),
     pxtorem = require('postcss-pxtorem'),
@@ -115,3 +116,18 @@ module.exports = (config) => {
         .pipe(plumber())
         .pipe(plumber.stop());
 };
+
+function error(err, task) {
+  log(chalk.cyan(task + " Error") + " " + chalk.red(err.message));
+  let message = err.message;
+  if (err.relativePath) {
+    message = "Error in " + err.relativePath
+  }
+  notifier.notify({
+    title: task + ' Error',
+    message: message,
+    sound: true, // Only Notification Center or Windows Toasters
+    wait: true, // Wait with callback, until user action is taken against notification
+    type: 'error'
+  });
+}
